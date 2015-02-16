@@ -8,4 +8,4 @@ See the test files for example on how to use it.
 
 ## License 
 
-See the `license.txt` file for the terms under which it may be used and distributed.
+See the `LICENSE` file for the terms under which it may be used and distributed.
