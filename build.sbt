@@ -3,7 +3,7 @@ import scalariform.formatter.preferences._
 
 name := "scala-mapifier"
 
-organization := "io.github.nremond"
+organization := "com.in-and-win"
 
 version := "0.1-SNAPSHOT"
 
@@ -45,7 +45,7 @@ publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 
 pomExtra := (
-  <url>http://github.com/nremond/scala-mapifier</url>
+  <url>http://github.com/in-and-win/scala-mapifier</url>
   <licenses>
     <license>
       <name>Apache</name>
@@ -54,8 +54,8 @@ pomExtra := (
     </license>
   </licenses>
   <scm>
-    <url>git@github.com:nremond/scala-mapifier.git</url>
-    <connection>scm:git@github.com:nremond/scala-mapifier.git</connection>
+    <url>git@github.com:in-and-win/scala-mapifier.git</url>
+    <connection>scm:git@github.com:in-and-win/scala-mapifier.git</connection>
   </scm>
   <developers>
     <developer>
