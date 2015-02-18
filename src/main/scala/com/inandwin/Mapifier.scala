@@ -3,10 +3,6 @@ package com.inandwin
 import scala.language.experimental.macros
 import scala.reflect.macros.whitebox.Context
 
-// Scala macro to convert between a case class instance and a Map of constructor parameters.
-// http://blog.echo.sh/post/65955606729/exploring-scala-macros-map-to-case-class-conversion
-// https://github.com/echojc/scala-macro-template
-
 trait StringMarshaller[T] {
   def marshall(t: T): String
   def unMarshall(s: String): T
@@ -23,6 +19,8 @@ trait Mapifier[T] {
   def fromMap(map: Map[String, String]): T
 }
 
+// Scala macro to convert between a case class instance and a Map of constructor parameters.
+// See: http://blog.echo.sh/post/65955606729/exploring-scala-macros-map-to-case-class-conversion
 object Mapifier {
 
   def mapify[T: Mapifier](t: T): Map[String, String] = implicitly[Mapifier[T]].toMap(t)
