@@ -5,7 +5,7 @@ name := "scala-mapifier"
 
 organization := "com.in-and-win"
 
-version := "0.2"
+version := "0.2.1"
 
 scalaVersion := "2.11.5"
 
@@ -17,7 +17,7 @@ libraryDependencies <+= scalaVersion("org.scala-lang" % "scala-compiler" % _)
 /// Specs2
 resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
 
-libraryDependencies += "org.specs2" % "specs2_2.11" % "2.4.16"
+libraryDependencies += "org.specs2" % "specs2_2.11" % "2.4.16" % "test"
 
 /// Scalariform
 scalariformSettings
