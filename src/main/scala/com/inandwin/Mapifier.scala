@@ -18,19 +18,19 @@ object StringMarshaller {
 
 }
 
-trait Mappable[T] {
+trait Mapifier[T] {
   def toMap(t: T): Map[String, String]
   def fromMap(map: Map[String, String]): T
 }
 
-object Mappable {
+object Mapifier {
 
-  def mapify[T: Mappable](t: T): Map[String, String] = implicitly[Mappable[T]].toMap(t)
-  def materialize[T: Mappable](map: Map[String, String]): T = implicitly[Mappable[T]].fromMap(map)
+  def mapify[T: Mapifier](t: T): Map[String, String] = implicitly[Mapifier[T]].toMap(t)
+  def materialize[T: Mapifier](map: Map[String, String]): T = implicitly[Mapifier[T]].fromMap(map)
 
-  implicit def materializeMappable[T]: Mappable[T] = macro materializeMappableImpl[T]
+  implicit def apply[T]: Mapifier[T] = macro applyImpl[T]
 
-  def materializeMappableImpl[T: c.WeakTypeTag](c: Context): c.Expr[Mappable[T]] = {
+  def applyImpl[T: c.WeakTypeTag](c: Context): c.Expr[Mapifier[T]] = {
     import c.universe._
     val tpe = weakTypeOf[T]
     val companion = tpe.typeSymbol.companion
@@ -47,9 +47,9 @@ object Mappable {
       (q"$key -> com.inandwin.StringMarshaller.marshall(t.$name)", q"com.inandwin.StringMarshaller.unMarshall[$returnType](map($key))")
     }.unzip
 
-    c.Expr[Mappable[T]] {
+    c.Expr[Mapifier[T]] {
       q"""
-      new Mappable[$tpe] {
+      new Mapifier[$tpe] {
         def toMap(t: $tpe): Map[String, String] = Map(..$toMapParams)
         def fromMap(map: Map[String, String]): $tpe = $companion(..$fromMapParams)
       }

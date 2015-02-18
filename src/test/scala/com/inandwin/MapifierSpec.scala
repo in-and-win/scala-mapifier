@@ -4,8 +4,8 @@ import org.specs2.mutable._
 
 case class Foo(a: Int, b: Double, c: String)
 
-class MappableSpec extends Specification {
-  "Mappable should" should {
+class MapifierSpec extends Specification {
+  "Mapifier should" should {
     val foo = Foo(42, 3.14, "Bruce Lee")
     val fooMap = Map(
       "a" -> "42",
@@ -28,15 +28,14 @@ class MappableSpec extends Specification {
       def unMarshall(s: String): String = s
     }
 
-    implicit val fooGen = Mappable.materializeMappable[Foo]
+    implicit val fooGen = Mapifier[Foo]
 
     "be able to convert a 'case class' to a Map" in {
-      Mappable.mapify(foo) must beEqualTo(fooMap)
+      Mapifier.mapify(foo) must beEqualTo(fooMap)
     }
 
     "be able to instanciate a 'case class' from a Map" in {
-      Mappable.materialize(fooMap) must beEqualTo(foo)
+      Mapifier.materialize(fooMap) must beEqualTo(foo)
     }
-
   }
 }
