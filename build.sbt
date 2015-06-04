@@ -7,7 +7,7 @@ organization := "com.in-and-win"
 
 version := "0.3-SNAPSHOT"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.6"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings", "-Xlint", "-language:reflectiveCalls")
 
